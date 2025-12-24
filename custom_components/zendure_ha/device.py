@@ -389,8 +389,9 @@ class ZendureLegacy(ZendureDevice):
 
         """Refresh the device data."""
         if not self.online and self.lastseen == datetime.min:
-            self.mqttPublish(self.topic_read, {"properties": ["getAll"]}, Api.mqttCloud)
-            self.mqttPublish(self.topic_read, {"properties": ["getAll"]}, Api.mqttLocal)
+            #self.mqttPublish(self.topic_read, {"properties": ["getAll"]}, Api.mqttCloud)
+            #self.mqttPublish(self.topic_read, {"properties": ["getAll"]}, Api.mqttLocal)
+            self.mqttPublish(self.topic_read, {"properties": ["getAll"]}, self.mqtt)
             if update_count > 0:
                 await self.bleMqtt(Api.localServer, Api.mqttLocal)
         else:

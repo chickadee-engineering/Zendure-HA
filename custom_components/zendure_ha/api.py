@@ -253,15 +253,15 @@ class Api:
                     if device.mqtt != client:
                         device.mqtt = client
 
-                    if device.zendure is None:
-                        psw = hashlib.md5(device.deviceId.encode()).hexdigest().upper()[8:24]  # noqa: S324
-                        device.zendure = mqtt_client.Client(mqtt_enums.CallbackAPIVersion.VERSION2, device.deviceId, False, "zendure")
-                        self.mqttInit(device.zendure, Api.cloudServer, Api.cloudPort, device.deviceId, psw)
+                    #if device.zendure is None:
+                    #    psw = hashlib.md5(device.deviceId.encode()).hexdigest().upper()[8:24]  # noqa: S324
+                    #    device.zendure = mqtt_client.Client(mqtt_enums.CallbackAPIVersion.VERSION2, device.deviceId, False, "zendure")
+                    #    self.mqttInit(device.zendure, Api.cloudServer, Api.cloudPort, device.deviceId, psw)
 
-                    if device.zendure is not None and device.zendure.is_connected():
-                        payload["deviceId"] = device.deviceId
-                        payload["isHA"] = True
-                        device.zendure.publish(msg.topic, json.dumps(payload, default=lambda o: o.__dict__))
+                    #if device.zendure is not None and device.zendure.is_connected():
+                    #    payload["deviceId"] = device.deviceId
+                    #    payload["isHA"] = True
+                    #    device.zendure.publish(msg.topic, json.dumps(payload, default=lambda o: o.__dict__))
             else:
                 _LOGGER.info(f"Local message from device {msg.topic} => {msg.payload}")
 
