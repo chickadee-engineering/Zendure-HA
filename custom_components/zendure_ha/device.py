@@ -523,8 +523,9 @@ class ZendureLegacy(ZendureDevice):
         if self.lastseen != datetime.min:
             self.mqttPublish(self.topic_read, {"properties": ["getAll"]}, self.mqtt)
         else:
-            self.mqttPublish(self.topic_read, {"properties": ["getAll"]}, Api.mqttCloud)
-            self.mqttPublish(self.topic_read, {"properties": ["getAll"]}, Api.mqttLocal)
+            #self.mqttPublish(self.topic_read, {"properties": ["getAll"]}, Api.mqttCloud)
+            #self.mqttPublish(self.topic_read, {"properties": ["getAll"]}, Api.mqttLocal)
+            self.mqttPublish(self.topic_read, {"properties": ["getAll"]}, self.mqtt)
 
     def mqttMessage(self, topic: str, payload: Any) -> bool:
         if topic == "register/replay":
